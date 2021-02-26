@@ -2,8 +2,6 @@
 #define VECTOR_DYN_ARRAY_H
 
 // TODO prevent leakage in case of init error
-// TODO make fields private
-
 
 template<typename T, bool is_const>
 class dyn_array_iterator {
@@ -45,7 +43,6 @@ class dyn_array {
     T* memory_m;
     size_t memory_size_m{};
     int scaler_m = 2;
-
     size_t size_m;
 
 public:
@@ -58,8 +55,8 @@ public:
     auto rbegin() { return std::reverse_iterator(end()); }
     auto rend() { return std::reverse_iterator(begin()); }
 
-    const_iterator cbegin() { return const_iterator(memory_m); }
-    const_iterator cend() { return const_iterator(memory_m + size_m); }
+    const_iterator cbegin() const { return const_iterator(memory_m); }
+    const_iterator cend() const { return const_iterator(memory_m + size_m); }
 
     auto rcbegin() { return std::reverse_iterator(cend()); }
     auto rcend() { return std::reverse_iterator(cbegin()); }
